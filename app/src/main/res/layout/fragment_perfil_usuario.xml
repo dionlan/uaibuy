@@ -1,0 +1,159 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.PerfilUsuarioFragment">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_perfil_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meu Perfil"
+            android:layout_gravity="center"
+            android:id="@+id/toolbar_title_usuario"
+            android:textColor="#ffffff"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imagemConfiguracaoPerfil"
+            android:src="@drawable/ic_action_settings"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imagemChatPerfilUsuario"
+            android:src="@drawable/ic_action_chat"
+            android:layout_column="1"
+            android:adjustViewBounds="false" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_perfil_usuario"
+        android:layout_below="@+id/toolbar_perfil_usuario">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/fotoPerfilUsuario"
+                android:src="@drawable/ic_atualiza_foto_perfil"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:collapseColumns="3"
+                android:layout_marginLeft="10dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Seguindo"
+                        android:id="@+id/seguindo"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="   Interesse   "
+                        android:id="@+id/interesse"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_row="0"
+                        android:layout_column="2" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="10"
+                        android:id="@+id/qtd_seguindo"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="10"
+                        android:id="@+id/qtd_fertas_interesse"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_column="2" />
+                </TableRow>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center">
+
+                </LinearLayout>
+            </TableLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Joãozinho da Silva"
+            android:id="@+id/nomeUsuario" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Descrição do Perfil do Usuario"
+            android:id="@+id/descricaoPerfilUsuario" />
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:verticalSpacing="0dp"
+            android:horizontalSpacing="0dp"
+            android:stretchMode="columnWidth"
+            android:scrollbars="none"
+            android:numColumns="2"
+            android:background="#ffffff" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,200 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.CadastrarFragment"
+    android:background="#91c4f3">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/imagemContatoCadastro"
+                        android:src="@drawable/ic_atualiza_foto_perfil"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentBottom="false"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignParentLeft="false"
+                        android:onClick="clicaTirarFoto" />
+
+                   <!-- <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imagemAddFotoCadastro"
+                        android:src="@drawable/ic_add_photo"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:onClick="clicaTirarFoto" />-->
+                </RelativeLayout>
+
+                <!-- <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Biblioteca"
+                    android:id="@+id/botaoAddFoto"
+                    android:onClick="clicaCarregarImagem" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Câmera"
+                    android:id="@+id/botaoTirarFoto"
+                    android:onClick="clicaTirarFoto" />-->
+
+            </LinearLayout>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="É um comércio?"
+                android:id="@+id/mySwitch"
+                android:checked="false"
+                android:layout_marginLeft="6dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button_facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    facebook:com_facebook_login_text="Login com o Facebook"
+                    facebook:com_facebook_logout_text="Logout"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/text_details_nome_face"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_above="@+id/login_button_facebook"
+                    android:layout_gravity="right" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/campoNome"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="Nome" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/campoNomeFantasia"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="Nome Fantasia" />
+
+            <EditText
+                android:id="@+id/campoUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="@string/prompt_username" />
+
+            <EditText
+                android:id="@+id/campoSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/campoConfirmaSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_password_again"
+                android:imeActionId="@+id/login"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/campoEmail"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="E-mail" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/campoCnpj"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="CNPJ" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/campoEndereco"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="Endereço" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/campoTelefone"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="Telefone" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/campoCep"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="CEP" />
+
+            <Button
+                android:id="@+id/action_button_signup"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ic_butao_cadastrar"
+                android:text="Cadastrar"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+    
