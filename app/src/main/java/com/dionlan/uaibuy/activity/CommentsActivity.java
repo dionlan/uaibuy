@@ -2,6 +2,7 @@ package com.dionlan.uaibuy.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import butterknife.Bind;
@@ -59,6 +61,22 @@ public class CommentsActivity extends BaseDrawerActivity implements SendCommentB
                 }
             });
         }
+
+        ImageView imagemFeed = (ImageView) findViewById(R.id.imagemFeed);
+        imagemFeed.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            @SuppressWarnings("deprecation")
+            public void onClick(View v) {
+                /*final Intent intent = new Intent(CommentsActivity.this, MainActivity.class);
+                int[] startingLocation = new int[2];
+                v.getLocationOnScreen(startingLocation);
+                intent.putExtra(MainActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+                startActivity(intent);
+                overridePendingTransition(0, 0);*/
+            }
+        });
+
     }
 
     private void setupComments() {

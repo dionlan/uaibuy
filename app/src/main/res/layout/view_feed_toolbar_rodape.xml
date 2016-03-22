@@ -4,38 +4,29 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
-    app:elevation="@dimen/default_elevation"
+    android:background="#80111111"
+    android:layout_gravity="start"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp"
     app:layout_scrollFlags="scroll|enterAlways"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp">
 
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/imagemPesquisar"
-        android:src="@drawable/ic_action_search"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="left" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ofertas Publicadas"
-        android:layout_gravity="center"
-        android:id="@+id/toolbar_title"
-        android:textColor="#ffffff"
-        android:textSize="25dp"
-        android:layout_alignTop="@+id/imagemPublicar"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/imagemFeed"
+        android:src="@drawable/ic_feed_store"
+        android:baselineAlignBottom="false"
+        android:clickable="false" />
 
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/imagemPublicar"
-        android:src="@drawable/ic_publicar_oferta"
+        android:id="@+id/imagemPerfilUsuario"
+        android:src="@drawable/ic_user"
         android:layout_marginRight="10dp"
         android:layout_gravity="right"
         android:layout_alignBottom="@+id/toolbar"

@@ -1,0 +1,178 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PerfilComercianteActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_feed_toolbar_perfil_comerciante" />
+
+    <LinearLayout
+        android:id="@+id/contentRoot"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_perfil">
+
+            <ImageView
+                android:id="@+id/fotoPerfilComercio"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginRight="16dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Disitribuidora Recanto"
+                    android:id="@+id/nomeComercio"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Descrição do Perfil do Comércio"
+                    android:id="@+id/descricaoPerfilComercio"
+                    android:textSize="12sp"/>
+
+                <Button
+                    android:id="@+id/botaoSeguirNaoSeguir"
+                    android:layout_width="205dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/ic_botao_seguir"
+                    android:text="seguindo"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical" />
+
+
+                <!--  <ImageView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/imagemAddFotoCadastro"
+                      android:src="@drawable/ic_add_photo"
+                      android:layout_centerVertical="true"
+                      android:layout_centerHorizontal="true"
+                      android:onClick="clicaTirarFoto" />-->
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e5f2fd">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1167"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="20sp"
+                    android:id="@+id/qtd_publicacoes" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Publicações"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="12sp"
+                    android:id="@+id/publicacoes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="396"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="20sp"
+                    android:id="@+id/qtd_seguidores" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="seguidores"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="12sp"
+                    android:id="@+id/seguidores" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="485"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="20sp"
+                    android:id="@+id/qtd_seguindo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seguindo"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="12sp"
+                    android:id="@+id/seguindo" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:verticalSpacing="0dp"
+            android:horizontalSpacing="0dp"
+            android:stretchMode="columnWidth"
+            android:scrollbars="none"
+            android:numColumns="2"
+            android:background="#ffffff" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/toolbar_rodape"
+        layout="@layout/view_feed_toolbar_rodape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

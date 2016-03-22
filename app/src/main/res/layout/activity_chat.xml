@@ -2,54 +2,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity">
+    tools:context=".CommentsActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_configuracao_usuario"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/imagemVoltar"
-            android:src="@drawable/ic_action_back"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="false"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="left" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mensagens"
-            android:layout_gravity="center"
-            android:id="@+id/text_configuracao_usuario"
-            android:textColor="#ffffff"
-            android:textSize="25dp" />
-
-    </android.support.v7.widget.Toolbar>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_toolbar_chat" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/contentRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layout_configuracao_usuario"
-        android:layout_below="@+id/toolbar_configuracao_usuario">
+        android:layout_below="@id/toolbar"
+        android:background="@color/bg_comments"
+        android:elevation="@dimen/default_elevation"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvComments"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/shadow_top" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/llAddComment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CHAT..."
-            android:textSize="40dp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp" />
+            android:background="@color/bg_comments"
+            android:elevation="@dimen/default_elevation"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp">
 
+            <EditText
+                android:id="@+id/etComment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#555555"
+                android:textSize="14sp" />
+
+            <com.dionlan.uaibuy.view.SendCommentButton
+                android:id="@+id/btnSendComment"
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/btn_send_comment"
+                android:elevation="4dp"
+                android:orientation="vertical" />
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
-

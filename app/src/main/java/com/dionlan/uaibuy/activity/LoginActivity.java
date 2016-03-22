@@ -9,12 +9,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.parse.starter.R;
+import com.dionlan.uaibuy.R;
+import com.dionlan.uaibuy.fragments.CadastrarFragment;
+import com.dionlan.uaibuy.fragments.LogarFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.parse.starter.fragments.CadastrarFragment;
-import com.parse.starter.fragments.LogarFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,10 +25,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_novo);
+        setContentView(R.layout.activity_login);
 
-   /*     toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setupTabIcons() {
         int[] tabIcons = {
-                R.drawable.ic_user1,
+                R.drawable.ic_user,
                 R.drawable.ic_cadastrar_usuario
         };
 

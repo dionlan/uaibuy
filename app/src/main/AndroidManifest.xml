@@ -57,6 +57,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentActivity" />
         <activity
+            android:name=".activity.PerfilComercianteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransparentActivity" />
+        <activity
             android:name=".activity.UserProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentActivity" />
@@ -74,6 +78,13 @@
 
         <activity android:name=".PesquisaOferta"/>
 
+        <activity android:name=".DetalhesOfertaActivity"/>
+
+        <activity android:name=".ConfiguracaoUsuario"/>
+
+        <activity android:name=".activity.ChatActivity"/>
+
+        <activity android:name=".DispatchActivity" />
 
     </application>
 

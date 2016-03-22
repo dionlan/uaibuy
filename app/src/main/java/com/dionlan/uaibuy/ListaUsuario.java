@@ -19,7 +19,6 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.parse.starter.R;
 
 public class ListaUsuario extends AppCompatActivity {
 
@@ -34,7 +33,7 @@ public class ListaUsuario extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_cadastro);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            toolbar.setNavigationIcon(R.drawable.ic_action_back_1);
+            toolbar.setNavigationIcon(R.drawable.ic_action_back);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

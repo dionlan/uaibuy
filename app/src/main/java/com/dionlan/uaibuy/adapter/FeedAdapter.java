@@ -3,6 +3,7 @@ package com.dionlan.uaibuy.adapter;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,7 +148,10 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 new FeedItem(2, false),
                 new FeedItem(6, false),
                 new FeedItem(8, false),
-                new FeedItem(99, false)
+                new FeedItem(919, false),
+                new FeedItem(9, false),
+                new FeedItem(129, false),
+                new FeedItem(32, false)
         ));
         if (animated) {
             notifyItemRangeInserted(0, feedItems.size());
@@ -197,12 +201,56 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public void bindView(FeedItem feedItem) {
             this.feedItem = feedItem;
             int adapterPosition = getAdapterPosition();
-            ivFeedCenter.setImageResource(adapterPosition % 2 == 0 ? R.drawable.img_feed_center_1 : R.drawable.img_feed_center_2);
-            ivFeedBottom.setImageResource(adapterPosition % 2 == 0 ? R.drawable.img_feed_bottom_1 : R.drawable.img_feed_bottom_2);
-            btnLike.setImageResource(feedItem.isLiked ? R.drawable.ic_heart_red : R.drawable.ic_heart_outline_grey);
+            Log.i("AppInfo", "Tamanho: " + getAdapterPosition());
+            Log.i("AppInfo", "Posição ADAPTER: " + adapterPosition);
+
+                if (adapterPosition == 0){
+                    ivFeedCenter.setImageResource(R.drawable.absolut);
+                }else if (adapterPosition == 1){
+                    ivFeedCenter.setImageResource(R.drawable.bohemia);
+                }else if (adapterPosition == 2){
+                    ivFeedCenter.setImageResource(R.drawable.antarctica);
+                }else if (adapterPosition == 3){
+                    ivFeedCenter.setImageResource(R.drawable.velhobarreiro);
+                }else if (adapterPosition == 4){
+                    ivFeedCenter.setImageResource(R.drawable.brahma);
+                }else if (adapterPosition == 5){
+                    ivFeedCenter.setImageResource(R.drawable.tequila);
+                }else if (adapterPosition == 6){
+                    ivFeedCenter.setImageResource(R.drawable.bohemia);
+                }else if (adapterPosition == 7){
+                    ivFeedCenter.setImageResource(R.drawable.bohemia);
+                }else if (adapterPosition == 8){
+                    ivFeedCenter.setImageResource(R.drawable.absolut);
+                }else if (adapterPosition == 9) {
+                    ivFeedCenter.setImageResource(R.drawable.velhobarreiro);
+                }
+/*                ivFeedCenter.setImageResource(adapterPosition == 0 ? R.drawable.bohemia : R.drawable.absolut);
+                ivFeedCenter.setImageResource(adapterPosition % 2 == 0 ? R.drawable.velhobarreiro : R.drawable.antarctica);
+                ivFeedCenter.setImageResource(adapterPosition % 2 == 0 ? R.drawable.brahma : R.drawable.bohemia);
+                ivFeedCenter.setImageResource(adapterPosition %2 == 0 ? R.drawable.bohemia : R.drawable.antarctica);
+                ivFeedCenter.setImageResource(adapterPosition %2 == 0 ? R.drawable.velhobarreiro : R.drawable.antarctica);
+                ivFeedCenter.setImageResource(adapterPosition %2 == 0 ? R.drawable.bohemia : R.drawable.absolut);
+                ivFeedCenter.setImageResource(adapterPosition %2 == 0 ? R.drawable.brahma : R.drawable.antarctica);
+                ivFeedCenter.setImageResource(adapterPosition %2 == 0 ? R.drawable.velhobarreiro : R.drawable.brahma);
+                ivFeedCenter.setImageResource(adapterPosition %10 == 0 ? R.drawable.absolut : R.drawable.bohemia);*/
+
+
+                ivFeedBottom.setImageResource(adapterPosition %10 == 0 ? R.drawable.img_feed_bottom_1 : R.drawable.img_feed_bottom_2);
+
+
+            if (feedItem.isLiked){
+                btnLike.setImageResource(R.drawable.ic_heart_red);
+
+                feedItem.isLiked = true;
+            }else {
+                btnLike.setImageResource (R.drawable.ic_heart_outline_grey);
+                feedItem.isLiked = false;
+            }
+            /*btnLike.setImageResource(feedItem.isLiked ? R.drawable.ic_heart_red : R.drawable.ic_heart_outline_grey);
             tsLikesCounter.setCurrentText(vImageRoot.getResources().getQuantityString(
                     R.plurals.likes_count, feedItem.likesCount, feedItem.likesCount
-            ));
+            ));*/
         }
 
         public FeedItem getFeedItem() {
@@ -227,7 +275,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class FeedItem {
         public int likesCount;
-        public boolean isLiked;
+        public boolean isLiked = false;
 
         public FeedItem(int likesCount, boolean isLiked) {
             this.likesCount = likesCount;

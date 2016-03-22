@@ -24,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -39,9 +38,8 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
-import com.parse.starter.DispatchActivity;
-import com.parse.starter.R;
-
+import com.dionlan.uaibuy.DispatchActivity;
+import com.dionlan.uaibuy.R;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;

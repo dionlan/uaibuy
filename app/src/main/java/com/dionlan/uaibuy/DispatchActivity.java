@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.parse.ParseUser;
-import com.parse.starter.activity.LoginNovoActivity;
-import com.parse.starter.activity.MainActivity;
+import com.dionlan.uaibuy.activity.LoginActivity;
+import com.dionlan.uaibuy.activity.MainActivity;
 
 /**
  * Created by rufflez on 7/8/14.
@@ -22,7 +22,7 @@ public class DispatchActivity extends Activity {
             startActivity(new Intent(this, MainActivity.class));
         } else {
             // Start and intent for the logged out activity
-            startActivity(new Intent(this, LoginNovoActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    app:elevation="@dimen/default_elevation"
+    app:layout_scrollFlags="scroll|enterAlways"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perfil Comerciante"
+        android:layout_gravity="center"
+        android:id="@+id/toolbar_title"
+        android:textColor="#ffffff"
+        android:textSize="25dp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/imagemConfiguracaoPerfil"
+        android:src="@drawable/ic_action_settings"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/chatPerfilComercio"
+        android:src="@drawable/ic_action_chat"
+        android:layout_column="1"
+        android:adjustViewBounds="false" />
+</android.support.v7.widget.Toolbar>

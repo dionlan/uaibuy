@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.parse.starter.R;
+import com.dionlan.uaibuy.R;
 
 public class OneFragment extends Fragment {
 

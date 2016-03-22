@@ -24,8 +24,8 @@ public class BaseDrawerActivity extends BaseActivity {
 
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @Bind(R.id.vNavigation)
-    NavigationView vNavigation;
+/*    @Bind(R.id.vNavigation)
+    NavigationView vNavigation;*/
 
     @BindDimen(R.dimen.global_menu_avatar_size)
     int avatarSize;
@@ -41,10 +41,10 @@ public class BaseDrawerActivity extends BaseActivity {
         ViewGroup viewGroup = (ViewGroup) findViewById(R.id.flContentRoot);
         LayoutInflater.from(this).inflate(layoutResID, viewGroup, true);
         bindViews();
-        setupHeader();
+        //setupHeader();
     }
 
-    @Override
+    /*@Override
     protected void setupToolbar() {
         super.setupToolbar();
         if (getToolbar() != null) {
@@ -55,9 +55,9 @@ public class BaseDrawerActivity extends BaseActivity {
                 }
             });
         }
-    }
+    }*/
 
-    private void setupHeader() {
+    /*private void setupHeader() {
         View headerView = vNavigation.getHeaderView(0);
         ivMenuUserProfilePhoto = (ImageView) headerView.findViewById(R.id.ivMenuUserProfilePhoto);
         headerView.findViewById(R.id.vGlobalMenuHeader).setOnClickListener(new View.OnClickListener() {
@@ -74,7 +74,7 @@ public class BaseDrawerActivity extends BaseActivity {
                 .centerCrop()
                 .transform(new CircleTransformation())
                 .into(ivMenuUserProfilePhoto);
-    }
+    }*/
 
     public void onGlobalMenuHeaderClick(final View v) {
         drawerLayout.closeDrawer(Gravity.LEFT);

@@ -17,7 +17,7 @@ import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.starter.R;
+import com.dionlan.uaibuy.R;
 
 import java.util.ArrayList;
 import java.util.List;

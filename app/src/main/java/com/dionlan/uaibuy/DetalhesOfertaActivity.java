@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dionlan.uaibuy.activity.ComentariosOfertaActivity;
+
 /**
  * Created by dionlan on 07/03/2016.
  */

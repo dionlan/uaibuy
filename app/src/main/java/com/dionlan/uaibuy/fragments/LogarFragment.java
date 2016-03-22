@@ -4,17 +4,18 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dionlan.uaibuy.activity.MainActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.starter.PrincipalMainActivity;
-import com.parse.starter.R;
+import com.dionlan.uaibuy.R;
 
 public class LogarFragment extends Fragment {
 
@@ -72,18 +73,20 @@ public class LogarFragment extends Fragment {
                 dlg.setMessage("Entrando...  Por favor, aguarde...");
                 dlg.show();
                 // Call the Parse login method
+
                 ParseUser.logInInBackground(usernameView.getText().toString(), passwordView.getText()
                         .toString(), new LogInCallback() {
 
                     @Override
                     public void done(ParseUser user, ParseException e) {
-                        dlg.dismiss();
+
                         if (e != null) {
                             // Show the error message
                             Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            Log.i("AppInfo", "Erro: " + e);
                         } else {
                             // Start an intent for the dispatch activity
-                            Intent intent = new Intent(getActivity().getApplicationContext(), PrincipalMainActivity.class);
+                            Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         }

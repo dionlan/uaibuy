@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.OvershootInterpolator;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -54,6 +55,7 @@ import java.util.Date;
 public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFeedItemClickListener,
         FeedContextMenu.OnFeedContextMenuItemClickListener {
     public static final String ACTION_SHOW_LOADING_ITEM = "action_show_loading_item";
+    public static final String ARG_DRAWING_START_LOCATION = "arg_drawing_start_location";
 
     private static final int ANIM_DURATION_TOOLBAR = 300;
     private static final int ANIM_DURATION_FAB = 400;
@@ -72,6 +74,7 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
     private FeedAdapter feedAdapter;
 
     private boolean pendingIntroAnimation;
+    private int drawingStartLocation;
 
 
     @Override
@@ -79,6 +82,18 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupFeed();
+
+        drawingStartLocation = getIntent().getIntExtra(ARG_DRAWING_START_LOCATION, 0);
+        if (savedInstanceState == null) {
+            clContent.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    clContent.getViewTreeObserver().removeOnPreDrawListener(this);
+                    startIntroAnimation();
+                    return true;
+                }
+            });
+        }
 
         if (savedInstanceState == null) {
             pendingIntroAnimation = true;
@@ -208,7 +223,12 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
             @Override
             @SuppressWarnings("deprecation")
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PesquisaOferta.class));
+                final Intent intent = new Intent(MainActivity.this, PesquisaOferta.class);
+                int[] startingLocation = new int[2];
+                v.getLocationOnScreen(startingLocation);
+                intent.putExtra(PesquisaOferta.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -218,29 +238,15 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
             @Override
             @SuppressWarnings("deprecation")
             public void onClick(View v) {
-                final Intent intent = new Intent(MainActivity.this, CommentsActivity.class);
+                final Intent intent = new Intent(MainActivity.this, PerfilComercianteActivity.class);
                 int[] startingLocation = new int[2];
                 v.getLocationOnScreen(startingLocation);
-                intent.putExtra(CommentsActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+                intent.putExtra(PerfilComercianteActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
             }
         });
 
-        ImageView imagemFeed = (ImageView) findViewById(R.id.imagemFeed);
-        imagemFeed.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            @SuppressWarnings("deprecation")
-            public void onClick(View v) {
-                final Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                int[] startingLocation = new int[2];
-                v.getLocationOnScreen(startingLocation);
-                //intent.putExtra(MainActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-            }
-        });
 
     }
 
