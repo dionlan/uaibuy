@@ -2,6 +2,7 @@ package com.dionlan.uaibuy.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -73,7 +74,14 @@ public class PerfilComercianteActivity extends BaseDrawerActivity {
     List<Map<String, String>> publicacaoData = null;
     Bitmap bitmap = null;
     boolean seguindo = false;
+    public static final String ARG_REVEAL_START_LOCATION = "reveal_start_location";
 
+
+    public static void startUserProfileFromLocation(int[] startingLocation, Activity startingActivity) {
+        Intent intent = new Intent(startingActivity, PerfilComercianteActivity.class);
+        intent.putExtra(ARG_REVEAL_START_LOCATION, startingLocation);
+        startingActivity.startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

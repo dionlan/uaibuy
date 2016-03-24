@@ -389,7 +389,7 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
         int[] startingLocation = new int[2];
         v.getLocationOnScreen(startingLocation);
         startingLocation[0] += v.getWidth() / 2;
-        UserProfileActivity.startUserProfileFromLocation(startingLocation, this);
+        PerfilComercianteActivity.startUserProfileFromLocation(startingLocation, this);
         overridePendingTransition(0, 0);
     }
 
@@ -422,7 +422,7 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
         overridePendingTransition(0, 0);
     }*/
 
-    public void showLikedSnackbar() {
+   /* public void showLikedSnackbar() {
         Snackbar.make(clContent, "Liked!", Snackbar.LENGTH_SHORT).show();
-    }
+    }*/
 }

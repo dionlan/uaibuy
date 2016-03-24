@@ -18,6 +18,7 @@ import java.util.Map;
 
 import com.dionlan.uaibuy.R;
 import com.dionlan.uaibuy.Utils;
+import com.dionlan.uaibuy.activity.MainActivity;
 
 /**
  * Created by Miroslaw Stanek on 02.12.2015.
@@ -130,7 +131,25 @@ public class FeedItemAnimator extends DefaultItemAnimator {
         bounceAnimY.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                holder.btnLike.setImageResource(R.drawable.ic_heart_red);
+
+                holder.ivLike.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (holder.getFeedItem().isLiked) {
+
+                            holder.btnLike.setImageResource(R.drawable.ic_heart_red);
+
+                            holder.getFeedItem().isLiked = true;
+
+
+                        } else {
+                            holder.btnLike.setImageResource(R.drawable.ic_heart_outline_grey);
+                            holder.getFeedItem().isLiked = false;
+                        }
+                    }
+                });
+
             }
 
             @Override

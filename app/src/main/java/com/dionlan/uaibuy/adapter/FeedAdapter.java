@@ -5,12 +5,15 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextSwitcher;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +29,16 @@ import com.dionlan.uaibuy.view.LoadingFeedItemView;
  * Created by froger_mcs on 05.11.14.
  */
 public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    //variable for counting two successive up-down events
+    int clickCount = 0;
+    //variable for storing the time of first click
+    long startTime;
+    //variable for calculating the total time
+    long duration;
+    //constant for defining the time duration between the click that can be considered as double-tap
+    static final int MAX_DURATION = 300;
+
     public static final String ACTION_LIKE_BUTTON_CLICKED = "action_like_button_button";
     public static final String ACTION_LIKE_IMAGE_CLICKED = "action_like_image_button";
 
@@ -75,29 +88,90 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 onFeedItemClickListener.onMoreClick(v, cellFeedViewHolder.getAdapterPosition());
             }
         });
-        cellFeedViewHolder.ivFeedCenter.setOnClickListener(new View.OnClickListener() {
+
+
+        cellFeedViewHolder.ivFeedCenter.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                        startTime = System.currentTimeMillis();
+                        clickCount++;
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        long time = System.currentTimeMillis() - startTime;
+                        duration = duration + time;
+                        if (clickCount == 2) {
+                            if (duration <= MAX_DURATION) {
+                                Log.i("AppInfo", "CLICK DUPLO!");
+
+
+                                int adapterPosition = cellFeedViewHolder.getAdapterPosition();
+
+                                if (feedItems.get(adapterPosition).isLiked) {
+                                    feedItems.get(adapterPosition).likesCount++;
+                                    Log.i("AppInfo", "LIKE!!");
+                                } else {
+                                    --feedItems.get(adapterPosition).likesCount;
+                                    Log.i("AppInfo", "DESLIKE!");
+                                }
+
+                                notifyItemChanged(adapterPosition, ACTION_LIKE_IMAGE_CLICKED);
+                              /* if (context instanceof MainActivity) {
+                                ((MainActivity) context).showLikedSnackbar();
+                            }*/
+                            }
+                            clickCount = 0;
+                            duration = 0;
+                            break;
+                        }
+                }
+                return true;
+            }
+
+           /* @Override
             public void onClick(View v) {
+
                 int adapterPosition = cellFeedViewHolder.getAdapterPosition();
                 feedItems.get(adapterPosition).likesCount++;
                 notifyItemChanged(adapterPosition, ACTION_LIKE_IMAGE_CLICKED);
-                if (context instanceof MainActivity) {
+               *//* if (context instanceof MainActivity) {
                     ((MainActivity) context).showLikedSnackbar();
-                }
-            }
+                }*//*
+            }*/
         });
         cellFeedViewHolder.btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int adapterPosition = cellFeedViewHolder.getAdapterPosition();
-                feedItems.get(adapterPosition).likesCount++;
-                notifyItemChanged(adapterPosition, ACTION_LIKE_BUTTON_CLICKED);
-                if (context instanceof MainActivity) {
-                    ((MainActivity) context).showLikedSnackbar();
+
+                if (feedItems.get(adapterPosition).isLiked) {
+                    feedItems.get(adapterPosition).likesCount++;
+                    Log.i("AppInfo", "LIKE!!");
+                } else {
+                    --feedItems.get(adapterPosition).likesCount;
+                    Log.i("AppInfo", "DESLIKE!");
                 }
+                notifyItemChanged(adapterPosition, ACTION_LIKE_BUTTON_CLICKED);
+                /*if (context instanceof MainActivity) {
+                    ((MainActivity) context).showLikedSnackbar();
+                }*/
             }
         });
         cellFeedViewHolder.ivUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFeedItemClickListener.onProfileClick(view);
+            }
+        });
+        cellFeedViewHolder.nomeUsuarioPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFeedItemClickListener.onProfileClick(view);
+            }
+        });
+        cellFeedViewHolder.nomeUsuarioPerfilDescricaoOferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onFeedItemClickListener.onProfileClick(view);
@@ -150,8 +224,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 new FeedItem(8, false),
                 new FeedItem(919, false),
                 new FeedItem(9, false),
-                new FeedItem(129, false),
-                new FeedItem(32, false)
+                new FeedItem(129, false)
         ));
         if (animated) {
             notifyItemRangeInserted(0, feedItems.size());
@@ -172,8 +245,14 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static class CellFeedViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.ivFeedCenter)
         ImageView ivFeedCenter;
-        @Bind(R.id.ivFeedBottom)
-        ImageView ivFeedBottom;
+        @Bind(R.id.nomeUsuarioPerfil)
+        TextView nomeUsuarioPerfil;
+        @Bind(R.id.descricaoOferta)
+        TextView descricaoOferta;
+        @Bind(R.id.nomeUsuarioPerfilDescricaoOferta)
+        TextView nomeUsuarioPerfilDescricaoOferta;
+        /*@Bind(R.id.ivFeedBottom)
+        ImageView ivFeedBottom;*/
         @Bind(R.id.btnComments)
         ImageButton btnComments;
         @Bind(R.id.btnLike)
@@ -220,10 +299,6 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ivFeedCenter.setImageResource(R.drawable.bohemia);
                 }else if (adapterPosition == 7){
                     ivFeedCenter.setImageResource(R.drawable.bohemia);
-                }else if (adapterPosition == 8){
-                    ivFeedCenter.setImageResource(R.drawable.absolut);
-                }else if (adapterPosition == 9) {
-                    ivFeedCenter.setImageResource(R.drawable.velhobarreiro);
                 }
 /*                ivFeedCenter.setImageResource(adapterPosition == 0 ? R.drawable.bohemia : R.drawable.absolut);
                 ivFeedCenter.setImageResource(adapterPosition % 2 == 0 ? R.drawable.velhobarreiro : R.drawable.antarctica);
@@ -236,16 +311,15 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ivFeedCenter.setImageResource(adapterPosition %10 == 0 ? R.drawable.absolut : R.drawable.bohemia);*/
 
 
-                ivFeedBottom.setImageResource(adapterPosition %10 == 0 ? R.drawable.img_feed_bottom_1 : R.drawable.img_feed_bottom_2);
+                /*ivFeedBottom.setImageResource(adapterPosition %10 == 0 ? R.drawable.img_feed_bottom_1 : R.drawable.img_feed_bottom_2);*/
 
 
             if (feedItem.isLiked){
                 btnLike.setImageResource(R.drawable.ic_heart_red);
-
-                feedItem.isLiked = true;
+                feedItem.isLiked = false;
             }else {
                 btnLike.setImageResource (R.drawable.ic_heart_outline_grey);
-                feedItem.isLiked = false;
+                feedItem.isLiked = true;
             }
             /*btnLike.setImageResource(feedItem.isLiked ? R.drawable.ic_heart_red : R.drawable.ic_heart_outline_grey);
             tsLikesCounter.setCurrentText(vImageRoot.getResources().getQuantityString(

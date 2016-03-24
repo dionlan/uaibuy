@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_above="@+id/toolbar">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvFeed"
@@ -49,7 +49,7 @@
         android:id="@+id/toolbar"
         layout="@layout/view_feed_toolbar_rodape"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
