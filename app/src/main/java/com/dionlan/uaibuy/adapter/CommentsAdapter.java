@@ -48,18 +48,18 @@ public class CommentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         CommentViewHolder holder = (CommentViewHolder) viewHolder;
         switch (position % 3) {
             case 0:
-                holder.tvComment.setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
+                holder.tvComment.setText("Usuário 1 Testando usuário 1.");
                 break;
             case 1:
-                holder.tvComment.setText("Cupcake ipsum dolor sit amet bear claw.");
+                holder.tvComment.setText("Usuário 2 Testando usuário 2.");
                 break;
             case 2:
-                holder.tvComment.setText("Cupcake ipsum dolor sit. Amet gingerbread cupcake. Gummies ice cream dessert icing marzipan apple pie dessert sugar plum.");
+                holder.tvComment.setText("Usuário 3 Testando usuário 3.");
                 break;
         }
 
         Picasso.with(context)
-                .load(R.drawable.ic_launcher)
+                .load(R.drawable.ic_user_2)
                 .centerCrop()
                 .resize(avatarSize, avatarSize)
                 .transform(new RoundedTransformation())

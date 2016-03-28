@@ -10,6 +10,7 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
@@ -102,7 +103,6 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
         }
 
         dataValidadeTextView = new TextView(MainActivity.this);
-        //dataValidadeTextView.setTextSize(16);
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -123,20 +123,21 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
             @Override
             @SuppressWarnings("deprecation")
             public void onClick(View v) {
-                if(dataValidadeTextView.getParent()!=null) {
-                    ((ViewGroup) dataValidadeTextView.getParent()).removeView(dataValidadeTextView);
-                }
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Enviar uma oferta");
-                final EditText descricao = new EditText(MainActivity.this);
-                descricao.setHint("Descrição");
 
-                final EditText preco = new EditText(MainActivity.this);
-                preco.setHint("Preço");
+                final Dialog dialog = new Dialog(MainActivity.this); // Context, this, etc.
+                dialog.setContentView(R.layout.dialog_demo);
+                final EditText descricao = (EditText) dialog.findViewById(R.id.descricaoOferta);
+
+                final EditText preco = (EditText) dialog.findViewById(R.id.precoOferta);
                 preco.setInputType(InputType.TYPE_NUMBER_VARIATION_NORMAL);
 
-                dataValidadeTextView.setTextSize(18);
-                dataValidadeTextView.setText(" Data de validade da oferta atual: " + DatePickerFragment.dataAtualizada);
+                dataValidadeTextView = (TextView) dialog.findViewById(R.id.dataValidadeOferta);
+
+                ImageView imagemAddFotoOferta = (ImageView) dialog.findViewById(R.id.imagemAddFotoOferta);
+
+                dialog.show();
+
+                dataValidadeTextView.setText(" Oferta válida até dia " + DatePickerFragment.dataAtualizada);
                 dataValidadeTextView.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -149,11 +150,6 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
                 });
 
                 Log.i("AppInfo", "Data após o CLICK atualizada: " + DatePickerFragment.dataAtualizada);
-                LinearLayout lay = new LinearLayout(MainActivity.this);
-                lay.setOrientation(LinearLayout.VERTICAL);
-
-                ImageView imagemAddFotoOferta = new ImageView(MainActivity.this);
-                imagemAddFotoOferta.setImageResource(R.drawable.ic_add_photo);
 
                 imagemAddFotoOferta.setOnClickListener(new View.OnClickListener() {
 
@@ -161,24 +157,14 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
                     @SuppressWarnings("deprecation")
                     public void onClick(View v) {
                         Intent intent = new Intent();
-                        intent.setType("image*//*");
+                        intent.setType("image*//**//*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
                         startActivityForResult(Intent.createChooser(intent, "Select Contact Image"), 1);
                     }
                 });
 
-                lay.addView(descricao);
-                lay.addView(preco);
-                lay.addView(dataValidadeTextView);
-
-                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams (RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-                lay.addView(imagemAddFotoOferta, lp);
-
-                builder.setView(lay);
-                builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                dialog.findViewById(R.id.enviarOferta).setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
 
                         ParseObject publica = new ParseObject("Publicacao");
                         publica.put("username", ParseUser.getCurrentUser().getUsername());
@@ -205,14 +191,6 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
                         });
                     }
                 });
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
             }
         });
 

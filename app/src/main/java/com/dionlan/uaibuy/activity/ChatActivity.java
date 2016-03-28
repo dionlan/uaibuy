@@ -64,16 +64,10 @@ public class ChatActivity extends BaseDrawerActivity implements SendCommentButto
 
         ImageView imagemFeed = (ImageView) findViewById(R.id.imagemFeed);
         imagemFeed.setOnClickListener(new View.OnClickListener() {
-
             @Override
             @SuppressWarnings("deprecation")
             public void onClick(View v) {
-                /*final Intent intent = new Intent(CommentsActivity.this, MainActivity.class);
-                int[] startingLocation = new int[2];
-                v.getLocationOnScreen(startingLocation);
-                intent.putExtra(MainActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
-                startActivity(intent);
-                overridePendingTransition(0, 0);*/
+                onBackPressed();
             }
         });
 

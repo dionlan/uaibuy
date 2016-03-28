@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/view_feed_toolbar" />
+        layout="@layout/view_toolbar_mensagens" />
 
     <LinearLayout
         android:id="@+id/contentRoot"

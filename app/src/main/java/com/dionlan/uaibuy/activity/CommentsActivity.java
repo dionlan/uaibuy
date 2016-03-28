@@ -77,6 +77,16 @@ public class CommentsActivity extends BaseDrawerActivity implements SendCommentB
             }
         });
 
+        ImageView imagemVoltarView = (ImageView) findViewById(R.id.imagemVoltar);
+        imagemVoltarView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            @SuppressWarnings("deprecation")
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     private void setupComments() {
