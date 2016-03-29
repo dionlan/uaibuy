@@ -8,6 +8,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,11 +20,14 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -54,7 +60,7 @@ import java.util.Date;
 
 
 public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFeedItemClickListener,
-        FeedContextMenu.OnFeedContextMenuItemClickListener {
+        FeedContextMenu.OnFeedContextMenuItemClickListener, SearchView.OnQueryTextListener {
     public static final String ACTION_SHOW_LOADING_ITEM = "action_show_loading_item";
     public static final String ARG_DRAWING_START_LOCATION = "arg_drawing_start_location";
 
@@ -195,20 +201,30 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
         });
 
 
-        ImageView imagemPesquisar = (ImageView) findViewById(R.id.imagemPesquisar);
+        /*final ImageView imagemPesquisar = (ImageView) findViewById(R.id.imagemPesquisar);
         imagemPesquisar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             @SuppressWarnings("deprecation")
             public void onClick(View v) {
-                final Intent intent = new Intent(MainActivity.this, PesquisaOferta.class);
+
+                SearchView searchView = (SearchView) findViewById(R.id.imagemPesquisar);
+
+                searchView.setOnQueryTextListener((SearchView.OnQueryTextListener) getApplication());
+
+                SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+                searchView.setSearchableInfo(searchManager.getSearchableInfo(
+                        new ComponentName(MainActivity.this, SearchableActivity.class)));
+                searchView.setIconifiedByDefault(false);
+
+                *//*final Intent intent = new Intent(MainActivity.this, PesquisaOferta.class);
                 int[] startingLocation = new int[2];
                 v.getLocationOnScreen(startingLocation);
                 intent.putExtra(PesquisaOferta.ARG_DRAWING_START_LOCATION, startingLocation[1]);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
+                overridePendingTransition(0, 0);*//*
             }
-        });
+        });*/
 
         ImageView imagemPerfilComerciante = (ImageView) findViewById(R.id.imagemPerfilUsuario);
         imagemPerfilComerciante.setOnClickListener(new View.OnClickListener() {
@@ -226,6 +242,18 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
         });
 
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        // User pressed the search button
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        // User changed the text
+        return false;
     }
 
     private void setupFeed() {
@@ -254,6 +282,15 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
         super.onNewIntent(intent);
         if (ACTION_SHOW_LOADING_ITEM.equals(intent.getAction())) {
             showFeedLoadingItemDelayed();
+        }
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            Toast.makeText(this, "Searching by: "+ query, Toast.LENGTH_SHORT).show();
+
+        } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            String uri = intent.getDataString();
+            Toast.makeText(this, "Suggestion: "+ uri, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -292,7 +329,7 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
 
             // Display the chosen date to app interface
             dataValidadeTextView.setTextSize(18);
-            MainActivity.dataValidadeTextView.setText(" Data de validade da oferta: " +dataAtualizada);
+            MainActivity.dataValidadeTextView.setText(" Oferta válida até dia " +dataAtualizada);
 
         }
     }
@@ -304,6 +341,17 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
             pendingIntroAnimation = false;
             startIntroAnimation();
         }
+
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(
+                new ComponentName(this, SearchableActivity.class)));
+        searchView.setIconifiedByDefault(false);
         return true;
     }
 
@@ -403,4 +451,5 @@ public class MainActivity extends BaseDrawerActivity implements FeedAdapter.OnFe
    /* public void showLikedSnackbar() {
         Snackbar.make(clContent, "Liked!", Snackbar.LENGTH_SHORT).show();
     }*/
+
 }

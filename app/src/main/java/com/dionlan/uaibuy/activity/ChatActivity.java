@@ -2,6 +2,7 @@ package com.dionlan.uaibuy.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,14 +63,14 @@ public class ChatActivity extends BaseDrawerActivity implements SendCommentButto
             });
         }
 
-        ImageView imagemFeed = (ImageView) findViewById(R.id.imagemFeed);
+       /* ImageView imagemFeed = (ImageView) findViewById(R.id.imagemFeed);
         imagemFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             @SuppressWarnings("deprecation")
             public void onClick(View v) {
                 onBackPressed();
             }
-        });
+        });*/
 
         ImageView imagemVoltarView = (ImageView) findViewById(R.id.imagemVoltar);
         imagemVoltarView.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +81,6 @@ public class ChatActivity extends BaseDrawerActivity implements SendCommentButto
                 onBackPressed();
             }
         });
-
     }
 
     private void setupComments() {

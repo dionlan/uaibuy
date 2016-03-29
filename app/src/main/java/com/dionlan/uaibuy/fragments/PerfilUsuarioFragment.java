@@ -243,7 +243,7 @@ public class PerfilUsuarioFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.menu_usuarios, menu);
+        //inflater.inflate(R.menu.menu_usuarios, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
     @Override
@@ -254,11 +254,11 @@ public class PerfilUsuarioFragment extends Fragment {
             Log.i("AppInfo", "ID USUARIOS: " );
             startActivity(new Intent(getActivity().getBaseContext(), ListaUsuario.class));
 
-        } else */if (id == R.id.logout) {
+        } else *//*if (id == R.id.logout) {
             ParseUser.getCurrentUser().logOut();
             startActivity(new Intent(getActivity(), DispatchActivity.class));
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 }

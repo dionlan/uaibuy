@@ -1,16 +1,24 @@
 package com.dionlan.uaibuy;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.dionlan.uaibuy.activity.BaseDrawerActivity;
 import com.parse.FindCallback;
 import com.parse.ParseACL;
 import com.parse.ParseException;
@@ -20,8 +28,14 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaUsuario extends AppCompatActivity {
+import butterknife.Bind;
 
+public class ListaUsuario extends BaseDrawerActivity {
+
+    public static final String ARG_DRAWING_START_LOCATION = "arg_drawing_start_location";
+    private int drawingStartLocation;
+    @Bind(R.id.contentRoot)
+    LinearLayout contentRoot;
     ArrayList<String> usuarios;
     ArrayAdapter arrayAdapter;
 
@@ -30,7 +44,19 @@ public class ListaUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_usuario);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_cadastro);
+        drawingStartLocation = getIntent().getIntExtra(ARG_DRAWING_START_LOCATION, 0);
+        if (savedInstanceState == null) {
+            contentRoot.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    contentRoot.getViewTreeObserver().removeOnPreDrawListener(this);
+                    startIntroAnimation();
+                    return true;
+                }
+            });
+        }
+
+       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_cadastro);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_action_back);
@@ -40,7 +66,7 @@ public class ListaUsuario extends AppCompatActivity {
                     onBackPressed();
                 }
             });
-        }
+        }*/
 
         if(ParseUser.getCurrentUser().get("seguindo") == null) {
 
@@ -115,5 +141,51 @@ public class ListaUsuario extends AppCompatActivity {
             }
         });
 
+        ImageView imagemVoltarView = (ImageView) findViewById(R.id.imagemVoltar);
+        imagemVoltarView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            @SuppressWarnings("deprecation")
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+    }
+
+    private void startIntroAnimation() {
+        ViewCompat.setElevation(getToolbar(), 0);
+        contentRoot.setScaleY(0.1f);
+        contentRoot.setPivotY(drawingStartLocation);
+        //llAddComment.setTranslationY(200);
+
+        contentRoot.animate()
+                .scaleY(1)
+                .setDuration(200)
+                .setInterpolator(new AccelerateInterpolator())
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        ViewCompat.setElevation(getToolbar(), Utils.dpToPx(8));
+                        //animateContent();
+                    }
+                })
+                .start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        ViewCompat.setElevation(getToolbar(), 0);
+        contentRoot.animate()
+                .translationY(Utils.getScreenHeight(this))
+                .setDuration(200)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        ListaUsuario.super.onBackPressed();
+                        overridePendingTransition(0, 0);
+                    }
+                })
+                .start();
     }
 }

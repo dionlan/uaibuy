@@ -115,7 +115,7 @@ public class PerfilComercianteActivity extends BaseDrawerActivity {
 
                 //ImageItem item = (ImageItem) parent.getItemAtPosition(position);
                 //Create intent
-                Intent intent = new Intent(PerfilComercianteActivity.this, DetalhesOfertaActivity.class);
+                final Intent intent = new Intent(PerfilComercianteActivity.this, DetalhesOfertaActivity.class);
 
                 bitmap = BitmapFactory.decodeResource(getResources(), m.items.get(position).drawableId);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -123,12 +123,13 @@ public class PerfilComercianteActivity extends BaseDrawerActivity {
                 byte[] b = baos.toByteArray();
 
                 intent.putExtra("image", b);
-                intent.putExtra("title", String.valueOf(m.items.get(position).name));
+                //intent.putExtra("title", String.valueOf(m.items.get(position).name));
 
-                //intent.putExtra("image", m.items.get(position).drawableId);
-
-                //Start details activity
+                int[] startingLocation = new int[2];
+                v.getLocationOnScreen(startingLocation);
+                intent.putExtra(DetalhesOfertaActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
 
             }
         });
@@ -178,14 +179,24 @@ public class PerfilComercianteActivity extends BaseDrawerActivity {
 
         findViewById(R.id.seguindo).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                startActivity(new Intent(PerfilComercianteActivity.this, ListaUsuario.class));
+                final Intent intent = new Intent(PerfilComercianteActivity.this, ListaUsuario.class);
+                int[] startingLocation = new int[2];
+                view.getLocationOnScreen(startingLocation);
+                intent.putExtra(ListaUsuario.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
 
             }
         });
 
         findViewById(R.id.qtd_seguindo).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                startActivity(new Intent(PerfilComercianteActivity.this, ListaUsuario.class));
+                final Intent intent = new Intent(PerfilComercianteActivity.this, ListaUsuario.class);
+                int[] startingLocation = new int[2];
+                view.getLocationOnScreen(startingLocation);
+                intent.putExtra(ListaUsuario.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
