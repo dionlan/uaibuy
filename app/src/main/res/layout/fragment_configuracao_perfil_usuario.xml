@@ -12,132 +12,91 @@
         android:layout_below="@+id/toolbar">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layout_configuracao_usuario"
             android:layout_below="@+id/toolbar_configuracao_usuario"
             android:layout_alignParentStart="true">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="276dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:layout_column="1"
+                android:hint="Nome" />
 
-                <TableLayout
-                    android:layout_width="279dp"
-                    android:layout_height="match_parent">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:layout_column="1"
+                android:hint="Usuário" />
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText3"
+                android:layout_column="1"
+                android:hint="E-mail" />
 
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/editText"
-                            android:layout_column="1"
-                            android:hint="Nome" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText4"
+                android:layout_column="1"
+                android:hint="Telefone" />
 
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/editText2"
-                            android:layout_column="1"
-                            android:hint="Usuário" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/editText5"
-                            android:layout_column="1"
-                            android:hint="Descrição" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/editText3"
-                            android:layout_column="1"
-                            android:hint="E-mail" />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/editText4"
-                            android:layout_column="1"
-                            android:hint="Telefone" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imagemLogout"
-                            android:src="@drawable/ic_action_logout"
-                            android:layout_alignParentTop="false"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_column="0"
-                            android:layout_gravity="center_horizontal" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Sair"
-                            android:id="@+id/textView6"
-                            android:layout_column="1"
-                            android:layout_gravity="left|center_vertical" />
-
-                    </TableRow>
-
-                </TableLayout>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/fotoPerfilUsuario"
-                android:src="@drawable/ic_atualiza_foto_perfil"
-                android:layout_below="@+id/toolbar_configuracao_usuario"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="right" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText5"
+                android:layout_column="1"
+                android:hint="Descrição do Perfil" />
 
         </LinearLayout>
 
         <Button
+            android:id="@+id/action_button_login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_botao_logar"
             android:text="Concluir"
-            android:id="@+id/button2"
-            android:layout_below="@+id/layout_configuracao_usuario" />
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="10"
+            android:id="@+id/textView7"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="80dp"
+            android:textSize="30dp"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ofertas disponíveis"
+            android:id="@+id/textView6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Adquira aqui novas ofertas"
+            android:id="@+id/textoAdquirirNovasOfertas"
+            android:textColor="#0037ff"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

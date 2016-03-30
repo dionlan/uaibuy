@@ -13,8 +13,10 @@ import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.dionlan.uaibuy.activity.BaseDrawerActivity;
+import com.dionlan.uaibuy.activity.CommentsActivity;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -56,6 +58,21 @@ public class ConfiguracaoUsuario extends BaseDrawerActivity {
             }
         });
 
+        TextView textoAdquirirNovasOfertas = (TextView) findViewById(R.id.textoAdquirirNovasOfertas);
+        textoAdquirirNovasOfertas.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            @SuppressWarnings("deprecation")
+            public void onClick(View v) {
+                final Intent intent = new Intent(ConfiguracaoUsuario.this, AdquirirNovasOfertasActivity.class);
+                int[] startingLocation = new int[2];
+                v.getLocationOnScreen(startingLocation);
+                intent.putExtra(AdquirirNovasOfertasActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+
 /*        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_cadastro);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -68,20 +85,9 @@ public class ConfiguracaoUsuario extends BaseDrawerActivity {
             });
         }*/
 
-        ImageView imagemLogoutView = (ImageView) findViewById(R.id.imagemLogout);
-        imagemLogoutView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            @SuppressWarnings("deprecation")
-            public void onClick(View v) {
-                ParseUser.getCurrentUser().logOut();
-                startActivity(new Intent(ConfiguracaoUsuario.this, DispatchActivity.class));
-            }
-        });
-
         ParseUser currentUser = ParseUser.getCurrentUser();
 
-        ParseFile imagemContato = (ParseFile)currentUser.get("foto");
+        /*ParseFile imagemContato = (ParseFile)currentUser.get("foto");
         final ImageView imageComercioView = (ImageView) findViewById(R.id.fotoPerfilUsuario);
 
         if (imagemContato == null){
@@ -97,16 +103,16 @@ public class ConfiguracaoUsuario extends BaseDrawerActivity {
                     imageComercioView.setImageBitmap(bitmap);
                 }
             });
-        }
+        }*/
 
-        findViewById(R.id.fotoPerfilUsuario).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        ImageView imagemLogoutView = (ImageView) findViewById(R.id.imagemLogout);
+        imagemLogoutView.setOnClickListener(new View.OnClickListener() {
 
-                Intent intent = new Intent();
-                intent.setType("image*//**//*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Contact Image"), 1);
-
+            @Override
+            @SuppressWarnings("deprecation")
+            public void onClick(View v) {
+                ParseUser.getCurrentUser().logOut();
+                startActivity(new Intent(ConfiguracaoUsuario.this, DispatchActivity.class));
             }
         });
 

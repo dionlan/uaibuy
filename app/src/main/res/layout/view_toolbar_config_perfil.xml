@@ -29,4 +29,17 @@
         android:id="@+id/text_configuracao_usuario"
         android:textColor="#ffffff"
         android:textSize="25dp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/imagemLogout"
+        android:src="@drawable/ic_action_logout"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right" />
+
 </android.support.v7.widget.Toolbar>

@@ -4,18 +4,18 @@
     <Button
         android:id="@+id/btnReport"
         style="@style/ContextMenuButton"
-        android:text="REPORT"
+        android:text="INTERESSEI"
         android:textColor="@color/btn_context_menu_text_red" />
 
     <Button
         android:id="@+id/btnSharePhoto"
         style="@style/ContextMenuButton"
-        android:text="SHARE PHOTO" />
+        android:text="VER NO MAPA" />
 
     <Button
         android:id="@+id/btnCopyShareUrl"
         style="@style/ContextMenuButton"
-        android:text="COPY SHARE URL" />
+        android:text="EMITIR VOUCHER" />
 
     <View
         android:layout_width="match_parent"
@@ -25,6 +25,6 @@
     <Button
         android:id="@+id/btnCancel"
         style="@style/ContextMenuButton"
-        android:text="CANCEL" />
+        android:text="CANCELAR" />
 
 </merge>
